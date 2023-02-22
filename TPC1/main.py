@@ -1,5 +1,4 @@
 import re
-from operator import itemgetter
 
 
 class Person:
@@ -24,6 +23,8 @@ def readParaMemoria():
         (idade, sexo, tensao, colesterol, batimento, temDoenca) = z.groups()
         new_person = Person(idade, sexo, tensao, colesterol, batimento, temDoenca)
         lista.append(new_person)
+
+    file.close()
     return lista
 
 
@@ -114,15 +115,14 @@ def doenca_por_colesterol(lista):
     for col in x:
         lista_colesterol.append(col)
 
-    for col in lista_colesterol:
+    for colesterol in lista_colesterol:
         for person in lista:
-            if (col <= person.colesterol <= col + 9) and (str(col) + " - " + str(col+9)) not in dict:
-                dict[str(col) + " - " + str(col+9)] = 1
-            elif col <= person.colesterol <= col+9:
-                dict[str(col) + " - " + str(col+9)] += 1
-    sorted_keys = sorted(dict.keys())
-    sorted_dict = {key: dict[key] for key in sorted_keys}
-    print(sorted_dict)
+            if (colesterol <= person.colesterol < colesterol + 10) and \
+                    (str(colesterol) + " - " + str(colesterol + 9)) not in dict:
+                dict[str(colesterol) + " - " + str(colesterol + 9)] = 1
+            elif colesterol <= person.colesterol <= colesterol + 9:
+                dict[str(colesterol) + " - " + str(colesterol + 9)] += 1
+    print(dict)
 
 
 lista_main = readParaMemoria()
