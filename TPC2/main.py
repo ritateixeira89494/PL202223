@@ -1,6 +1,7 @@
 import sys
 import re
 
+
 # Nesta solução não é possível ter diferentes tipos na mesma linha, ou seja, 'On 21 =' irá dar erro
 
 def main():
